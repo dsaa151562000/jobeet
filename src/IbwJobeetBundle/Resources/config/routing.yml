@@ -1,0 +1,49 @@
+ibw_jobeet_ibw_job:
+    resource: "@IbwJobeetBundle/Resources/config/routing/job.yml"
+    prefix:   /job
+
+#ibw_jobeet_homepage:
+#    path:     /
+#    defaults: { _controller: IbwJobeetBundle:Default:index }
+
+ibw_jobeet_homepage:
+    pattern:  /
+    defaults: { _controller: IbwJobeetBundle:Job:index }
+
+ibw_job_show:
+    pattern:  /{company}/{location}/{id}/{position}
+    defaults: { _controller: "IbwJobeetBundle:Job:show" }
+
+
+# ...
+
+IbwJobeetBundle_category:
+    pattern: /category/{slug}/{page}
+    defaults: { _controller: IbwJobeetBundle:Category:show, page: 1 }
+
+
+# シークレットトークンでのみジョブの編集と削除ができるようにルートを変更
+
+ibw_job_edit:
+    pattern:  /{token}/edit
+    defaults: { _controller: "IbwJobeetBundle:Job:edit" }
+
+ibw_job_update:
+    pattern:  /{token}/update
+    defaults: { _controller: "IbwJobeetBundle:Job:update" }
+    requirements: { _method: post|put }
+
+ibw_job_delete:
+    pattern:  /{token}/delete
+    defaults: { _controller: "IbwJobeetBundle:Job:delete" }
+    requirements: { _method: post|delete }
+
+login:
+    pattern:   /login
+    defaults:  { _controller: IbwJobeetBundle:Default:login }
+
+login_check:
+    pattern:   /login_check
+
+logout:
+    pattern:   /logout

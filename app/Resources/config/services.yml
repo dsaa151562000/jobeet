@@ -1,0 +1,22 @@
+services:
+    ibw.jobeet.admin.category:
+        class: IbwJobeetBundle\Admin\CategoryAdmin
+        tags:
+            - { name: sonata.admin, manager_type: orm, group: jobeet, label: Categories }
+
+        arguments: [null, IbwJobeetBundle\Entity\Category, IbwJobeetBundle:CategoryAdmin]
+#        arguments:
+#            - ~
+#            - IbwJobeetBundle\Entity\Category
+#            - 'IbwJobeetBundle:CategoryAdmin'
+
+    ibw.jobeet.admin.job:
+        class: IbwJobeetBundle\Admin\JobAdmin
+        tags:
+            - { name: sonata.admin, manager_type: orm, group: jobeet, label: Jobs }
+        arguments: [null, IbwJobeetBundle\Entity\Job, IbwJobeetBundle:JobAdmin]
+
+#        arguments:
+#            - ~
+#            - IbwJobeetBundle\Entity\Job
+#            - 'IbwJobeetBundle:JobAdmin'

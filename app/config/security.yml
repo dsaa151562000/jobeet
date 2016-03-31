@@ -1,0 +1,143 @@
+security:
+    role_hierarchy:
+        ROLE_ADMIN:       ROLE_USER
+        ROLE_SUPER_ADMIN: [ROLE_USER, ROLE_ADMIN, ROLE_ALLOWED_TO_SWITCH]
+
+    firewalls:
+        dev:
+            pattern:  ^/(_(profiler|wdt)|css|images|js)/
+            security: false
+
+        secured_area:
+            pattern:    ^/
+            anonymous: ~
+            form_login:
+                login_path:  /login
+                check_path:  /login_check
+                default_target_path: ibw_jobeet_homepage
+
+            logout:
+                 path:   /logout
+                 target: /
+
+    access_control:
+        - { path: ^/admin, roles: ROLE_ADMIN }
+
+    providers:
+#        in_memory:
+#            memory:
+#                users:
+#                    admin: { password: adminpass, roles: 'ROLE_ADMIN' }
+        main:
+            entity: { class: IbwJobeetBundle\Entity\User, property: username }
+
+
+    encoders:
+#        Symfony\Component\Security\Core\User\User: plaintext
+        IbwJobeetBundle\Entity\User: sha512
+
+
+
+#================================================================---------
+
+
+    # エンコーダの設定
+#    encoders:
+#
+#     # パスワードのエンコード方式を設定
+#     # plaintextは生のパスワードでの認証方式、他にもsha1とかsha512とかがある
+#        Nazo\UserBundle\Entity\User:
+#                    algorithm: sha1
+#                    encode_as_base64: false
+#
+#                    iterations: 1
+#
+#    role_hierarchy:
+#        ROLE_ADMIN:       ROLE_USER
+#        ROLE_SUPER_ADMIN: [ROLE_USER, ROLE_ADMIN, ROLE_ALLOWED_TO_SWITCH]
+#        #。ROLE_SUPER_ADMIN 権限は、ROLE_USER, ROLE_ADMIN, ROLE_ALLOWED_TO_SWITCH
+#
+#    # ユーザー情報の設定（ユーザープロバイダ）
+#    providers:
+#        #作成したUserモデルをユーザー情報とする
+#        users:
+#            # Entityクラスの指定とユーザー名となるプロパティを指定
+#            entity: { class: Nazo\UserBundle\Entity\User, property: username }
+#
+#    # ファイアーウォールの設定
+#    firewalls:
+#        dev:
+#            pattern:  ^/(_(profiler|wdt)|css|images|js)/
+#            # セキュリティ設定を無効
+#            security: false
+#
+#        # ログイン画面は認証エリア外
+#        login:
+#            # エリア範囲（正規表現）
+#            pattern:  ^/user/login$
+#            # セキュリティ設定を無効
+#            security: false
+#
+#        # 認証エリアの設定
+#        secured_area:
+#            # エリア範囲（正規表現） ^文字列の先頭  /user/パス以下へのアクセス
+#            pattern:    ^/user/.*
+#
+#            # ログインフォームの設定
+#            form_login:
+#                # ログイン状態を確認するパス
+#                check_path: /user/login_check
+#                # ログインフォームのパス
+#                login_path: /user/login
+#
+#            # ログアウトの設定
+#            logout:
+#                # ログアウト用のURLのパス
+#                path:   /user/logout
+#                # ログアウト後に移行するページ
+#                target: /user/home
+#
+#            #anonymous: ~
+#            #http_basic:
+#            #    realm: "Secured Demo Area"
+#
+#    access_control:
+#    - { path: ^/user/, roles: ROLE_USER }
+#        #- { path: ^/login, roles: IS_AUTHENTICATED_ANONYMOUSLY, requires_channel: https }
+#        #- { path: ^/_internal, roles: IS_AUTHENTICATED_ANONYMOUSLY, ip: 127.0.0.1 }
+
+
+#================================================================---------
+
+# To get started with security, check out the documentation:
+# http://symfony.com/doc/current/book/security.html
+
+#security:
+
+    # http://symfony.com/doc/current/book/security.html#where-do-users-come-from-user-providers
+
+
+#    providers:
+#        in_memory:
+#            memory: ~
+#
+#    firewalls:
+
+        # disables authentication for assets and the profiler, adapt it according to your needs
+
+
+#        dev:
+#            pattern: ^/(_(profiler|wdt)|css|images|js)/
+#            security: false
+#
+#        main:
+#            anonymous: ~
+
+
+            # activate different ways to authenticate
+
+            # http_basic: ~
+            # http://symfony.com/doc/current/book/security.html#a-configuring-how-your-users-will-authenticate
+
+            # form_login: ~
+            # http://symfony.com/doc/current/cookbook/security/form_login_setup.html

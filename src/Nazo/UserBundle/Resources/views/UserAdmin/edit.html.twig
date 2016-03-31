@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>
+        ユーザー作成
+    </title>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+
+</head>
+<body>
+
+<h1>Edit User</h1>
+
+<div>ID : {{ user.id }}</div>
+
+<form action="{{ path('admin_user_edit') }}" method="post" {{ form_enctype(form) }}>
+    <input type="hidden" name="id" value="{{ user.id }}" />
+    {{ form_widget(form) }}
+    <input type="submit" value="save" />
+</form>
+
+<div>
+    <a href="{{ path('admin_user_index') }}">back to list</a>
+</div>
+
+</body>
+</html>
